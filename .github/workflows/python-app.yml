@@ -54,17 +54,9 @@ jobs:
       run:
         working-directory: ./example-app
     steps:
-      - name: Check working directory
-        run: |
-          ls -la
-          pwd
-          cd ./example-app || exit 1
-          ls -la
-          pwd
-  
       - name: Lint with flake8
         run: |
-          # Ensure we are in the correct directory before running flake8
+          cd example-app
           flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
           flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
 
