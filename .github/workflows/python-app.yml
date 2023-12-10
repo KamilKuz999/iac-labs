@@ -65,6 +65,10 @@ jobs:
       - name: Install pytest
         run: |
           python -m pip install pytest
+      - name: Debug Test Directory
+        run: |
+          ls -la ./example-app/tests
+          pwd
       - name: Run pytest
         run: |
           pytest
