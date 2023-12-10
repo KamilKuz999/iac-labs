@@ -14,7 +14,6 @@ permissions:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
     concurrency:
       group: some-group-name
@@ -24,22 +23,25 @@ jobs:
         working-directory: ./example-app
     
     steps:
-    - uses: actions/checkout@v3
-    - name: Set up Python 3.10
-      uses: actions/setup-python@v3
-      with:
-        python-version: "3.10"
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install flake8 pytest
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-    - name: Install Poetry Action
-      uses: snok/install-poetry@v1
-      with:
-        virtualenvs-create: true
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.10"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install flake8 pytest
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      - name: Install Poetry Action
+        uses: snok/install-poetry@v1
+        with:
+          virtualenvs-create: true
     
-  
   lint:
     needs: build
     runs-on: ubuntu-latest
@@ -47,6 +49,9 @@ jobs:
       group: some-group-name
     
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
       - name: Lint with flake8
         run: |
           # stop the build if there are Python syntax errors or undefined names
@@ -59,11 +64,11 @@ jobs:
     runs-on: ubuntu-latest
     concurrency:
       group: some-group-name
+      
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
       - name: Test with pytest
         run: |
           pytest
-      
-   
-
-          
