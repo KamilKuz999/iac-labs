@@ -38,7 +38,7 @@ jobs:
     - name: Install Poetry Action
       uses: snok/install-poetry@v1.3.4
       with:
-        virtualens-create: true
+        virtualenvs-create: true
         
     - name: Cache build venv
       id: cached-poetry-dependencies
