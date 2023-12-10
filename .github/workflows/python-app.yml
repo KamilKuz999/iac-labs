@@ -55,7 +55,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: ./example-app
+        working-directory: example-app
 
     steps:
     - name: Lint with flake8
