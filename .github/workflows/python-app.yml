@@ -5,16 +5,13 @@ name: Python application
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    branches: [main]
 
 permissions:
   contents: read
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     defaults:
@@ -22,65 +19,51 @@ jobs:
         working-directory: ./example-app
 
     steps:
-    - uses: actions/checkout@v3
-    
-    - name: Set up Python 3.10
-      uses: actions/setup-python@v3
-      with:
-        python-version: "3.10"
-        
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install flake8 pytest
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-        
-    - name: Install Poetry Action
-      uses: snok/install-poetry@v1.3.4
-      with:
-        virtualenvs-create: true
-        
-    - name: Cache build venv
-      id: cached-poetry-dependencies
-      uses: actions/cache@v3
-      with:
-        path: /home/runner/work/<path>/example-app/.venv
-        key: ${{ runner.os }}-venv
+      - uses: actions/checkout@v3
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.10"
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install flake8 pytest
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      - name: Install Poetry Action
+        uses: snok/install-poetry@v1
+        with:
+          virtualenvs-create: true
 
   lint:
     needs: build
     runs-on: ubuntu-latest
-   
     steps:
-      - name: Install Flake8
-        run: |
-          python -m pip install flake8
-    
       - name: Lint with flake8
         run: |
+          cd example-app
           flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
           flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
 
-  test:
-  
+  formatter:
     needs: build
     runs-on: ubuntu-latest
-    
     steps:
-      - name: Test with pytest
+      - name: Format code with black
         run: |
+          cd example-app
+          black .
+
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install pytest
+        run: |
+          cd example-app
+          python -m pip install pytest
+      - name: Run pytest
+        run: |
+          cd example-app
           pytest
 
-  formatter:
-
-    needs: build
-    runs-on: ubuntu-latest
-    
-    steps:
-      - name: git-clang-format action
-    # You may pin to the exact commit or the version.
-    # uses: kevmo314/clang-format-action-1@ea2274d9473cdb72a24f300881b89f6c8b722fc2
-        uses: kevmo314/clang-format-action-1@1.0.0
-        with:
-          style: file
           
