@@ -61,12 +61,10 @@ jobs:
   test:
     needs: build
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./example-app/tests
     steps:
       - name: Install pytest
         run: |
+          pwd
           python -m pip install pytest
       - name: Run pytest
         run: |
