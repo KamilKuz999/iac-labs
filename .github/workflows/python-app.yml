@@ -87,7 +87,7 @@ jobs:
     steps:
       - name: Install additional dependencies for unit tests
         run: |
-          cd exampe-app
+          cd example-app
           pip install coverage  pytest
       - name: Run unit tests with coverage
         run: |
