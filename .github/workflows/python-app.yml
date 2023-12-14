@@ -17,7 +17,7 @@ jobs:
     defaults:
       run:
         working-directory: ./example-app
-
+        
     steps:
       - uses: actions/checkout@v3
       - name: Set up Python 3.10
@@ -37,6 +37,8 @@ jobs:
   lint:
     needs: build
     runs-on: ubuntu-latest
+    concurrency:
+      group: static
     steps:
       - name: Install Flake8
         run: |
@@ -50,6 +52,9 @@ jobs:
   formatter:
     needs: build
     runs-on: ubuntu-latest
+    concurrency:
+      group: some-group-name
+      
     steps:
       - name: Install Black
         run: |
@@ -63,7 +68,9 @@ jobs:
   security:
     needs: build
     runs-on: ubuntu-latest
-    
+    concurrency:
+      group: some-group-name
+      
     steps:
       - name: Install Bandit
         run:
@@ -74,7 +81,7 @@ jobs:
 
 
   unit-tests:
-    needs: security
+    needs: [security, lint, formatter]
     runs-on: ubuntu-latest
     
     steps:
