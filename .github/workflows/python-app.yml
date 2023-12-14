@@ -28,7 +28,7 @@ jobs:
         id: cached-poetry-dependencies
         uses: actions/cache@v3
         with:
-          path: /home/runner/work/<path>/example-app/.venv
+          path: /home/runner/work/iac-labs/example-app/.venv
           key: ${{ runner.os }}-venv
       - name: Install dependencies
         run: |
@@ -50,7 +50,7 @@ jobs:
         id: cached-poetry-dependencies
         uses: actions/cache@v3
         with:
-          path: /home/runner/work/<path>/example-app/.venv
+          path: /home/runner/work/iac-labs/example-app/.venv
           key: ${{ runner.os }}-venv
       - name: Install Flake8
         run: |
@@ -72,7 +72,7 @@ jobs:
         id: cached-poetry-dependencies
         uses: actions/cache@v3
         with:
-          path: /home/runner/work/<path>/example-app/.venv
+          path: /home/runner/work/iac-labs/example-app/.venv
           key: ${{ runner.os }}-venv
       - name: Install Black
         run: |
@@ -94,7 +94,7 @@ jobs:
         id: cached-poetry-dependencies
         uses: actions/cache@v3
         with:
-          path: /home/runner/work/<path>/example-app/.venv
+          path: /home/runner/work/iac-labs/example-app/.venv
           key: ${{ runner.os }}-venv
       - name: Install Bandit
         run:
@@ -119,7 +119,7 @@ jobs:
         id: cached-poetry-dependencies
         uses: actions/cache@v3
         with:
-          path: /home/runner/work/<path>/example-app/.venv
+          path: /home/runner/work/iac-labs/example-app/.venv
           key: ${{ runner.os }}-venv
       - name: Install additional dependencies for unit tests
         run: |
