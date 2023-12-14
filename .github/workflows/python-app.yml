@@ -68,7 +68,6 @@ jobs:
       - name: Install Bandit
         run:
           pip install bandit
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
       - name: Run bandit
         run: |
           bandit -r .        
