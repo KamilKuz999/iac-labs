@@ -50,7 +50,7 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest]
     concurrency:
-      group: static
+      group: static1
     steps:
       - name: Cache build venv
         id: cached-poetry-dependencies
@@ -82,7 +82,7 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest]
     concurrency:
-      group: static
+      group: static2
     steps:
       - name: Cache build venv
         id: cached-poetry-dependencies
@@ -114,7 +114,7 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest]
     concurrency:
-      group: static
+      group: static3
       
     steps:
       - name: Cache build venv
