@@ -12,7 +12,10 @@ permissions:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
     defaults:
       run:
         working-directory: ./example-app
@@ -42,7 +45,10 @@ jobs:
 
   lint:
     needs: build
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
     concurrency:
       group: static
     steps:
@@ -71,7 +77,10 @@ jobs:
 
   formatter:
     needs: build
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
     concurrency:
       group: some-group-name
       
@@ -101,7 +110,10 @@ jobs:
           
   security:
     needs: build
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
     concurrency:
       group: some-group-name
       
@@ -130,7 +142,10 @@ jobs:
 
   unit-tests:
     needs: [security, lint, formatter]
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
     
     steps:
       - name: Checkout repository
