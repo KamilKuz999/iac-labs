@@ -32,11 +32,12 @@ jobs:
         uses: snok/install-poetry@v1
         with:
           virtualenvs-create: true
-      - name: Cache build venv
-        id: cached-poetry-dependencies
-        uses: actions/cache@v3
+      - name: Cache venv
+        id: cache-venv
+        uses: actions/cache@v2
         with:
-          path: /home/runner/work/iac-labs/example-app/.venv
+          path: |
+            ~/.cache/pypoetry/virtualenvs
           key: ${{ runner.os }}-venv-${{ hashFiles('**/*.toml') }}
 
   lint:
