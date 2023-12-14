@@ -87,7 +87,7 @@ jobs:
     steps:
       - name: Install additional dependencies for unit tests
         run: |
-          pip install coverage  
+          pip install coverage  pytest
       - name: Run unit tests with coverage
         run: |
           coverage run -m pytest
