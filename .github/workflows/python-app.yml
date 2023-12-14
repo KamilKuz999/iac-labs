@@ -70,4 +70,20 @@ jobs:
           pip install bandit
       - name: Run bandit
         run: |
-          bandit -r .        
+          bandit -r .    
+
+
+  unit-tests:
+    needs: security
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Install additional dependencies for unit tests
+        run: |
+          pip install coverage  
+      - name: Run unit tests with coverage
+        run: |
+          coverage run -m pytest
+      - name: Show test coverage report
+        run: |
+          coverage report -m
