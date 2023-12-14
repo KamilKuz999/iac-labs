@@ -28,7 +28,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: example-app/.venv
-          key: ${{ runner.os }}-venv
+          key: ${{ runner.os }}-venv-${{ hashFiles('example-app/pyproject.toml') }}
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
