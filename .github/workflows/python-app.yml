@@ -27,7 +27,7 @@ jobs:
         id: cached-poetry-dependencies
         uses: actions/cache@v3
         with:
-          path: example-app/.venv
+          path: /home/runner/work/iac-labs/example-app/.venv
           key: ${{ runner.os }}-venv-${{ hashFiles('example-app/pyproject.toml') }}
       - name: Install dependencies
         run: |
