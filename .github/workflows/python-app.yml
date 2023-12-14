@@ -67,5 +67,4 @@ jobs:
     steps:
       - name: Run bandit
         run: |
-          cd example-app
           bandit -r .        
