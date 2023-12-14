@@ -61,6 +61,14 @@ jobs:
           flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
           flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
 
+      - name: Cache venv
+        id: cache-venv
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.cache/pypoetry/virtualenvs
+          key: ${{ runner.os }}-venv-${{ hashFiles('**/*.toml') }}
+
   formatter:
     needs: build
     runs-on: ubuntu-latest
@@ -80,6 +88,14 @@ jobs:
       - name: Format code with black
         run: |
           black .
+
+      - name: Cache venv
+        id: cache-venv
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.cache/pypoetry/virtualenvs
+          key: ${{ runner.os }}-venv-${{ hashFiles('**/*.toml') }}
 
   
           
@@ -101,7 +117,15 @@ jobs:
           pip install bandit
       - name: Run bandit
         run: |
-          bandit -r .    
+          bandit -r .  
+
+      - name: Cache venv
+        id: cache-venv
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.cache/pypoetry/virtualenvs
+          key: ${{ runner.os }}-venv-${{ hashFiles('**/*.toml') }}
 
 
   unit-tests:
@@ -134,4 +158,12 @@ jobs:
         run: |
           cd example-app
           coverage report -m
+
+      - name: Cache venv
+        id: cache-venv
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.cache/pypoetry/virtualenvs
+          key: ${{ runner.os }}-venv-${{ hashFiles('**/*.toml') }}
 
