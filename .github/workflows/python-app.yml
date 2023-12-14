@@ -37,7 +37,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: /home/runner/work/iac-labs/example-app/.venv
-          key: ${{ runner.os }}-venv-${{ hashFiles('example-app/pyproject.toml') }}
+          key: ${{ runner.os }}-venv-${{ hashFiles('**/*.toml') }}
 
   lint:
     needs: build
