@@ -163,7 +163,6 @@ jobs:
         run: |
           cd example-app
           pip install coverage  pytest
-          if [ -f requirements.txt ]; then python -m pip install -r requirements.txt; fi
       - name: Run unit tests with coverage
         run: |
           cd example-app
