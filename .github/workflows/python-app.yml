@@ -85,10 +85,17 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.10"
       - name: Install additional dependencies for unit tests
         run: |
           cd example-app
           pip install coverage  pytest
+          if [ -f requirements.txt ]; then python -m pip install -r requirements.txt; fi
       - name: Run unit tests with coverage
         run: |
           cd example-app
