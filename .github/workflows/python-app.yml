@@ -82,7 +82,7 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest]
     concurrency:
-      group: some-group-name
+      group: static
       
     steps:
       - name: Cache build venv
@@ -115,7 +115,7 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest]
     concurrency:
-      group: some-group-name
+      group: static
       
     steps:
       - name: Cache build venv
