@@ -35,7 +35,7 @@ class ProductionConfig(Config):
         f"{os.getenv('DB_PASS', 'blI9WS5f13XLYsNIJ1namBwud0APer1a')}@"
         f"{os.getenv('DB_HOST', 'dpg-cltvd821hbls73e7irgg-a.oregon-postgres.render.com')}:"
         f"{os.getenv('DB_PORT', '5432')}/"
-        f"{os.getenv('DB_NAME', 'appseed_db_s2ws')}"
+        f"{os.getenv('DB_NAME', 'appseed_db_s2ws')}?sslmode=disable"
     )    
 
 
